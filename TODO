@@ -1,0 +1,6 @@
+TODO
+===========================
+- Finish anova.py refactor and integrate w/ SurrogateModel
+- Integrate parameter range file into config as a dict
+- Integrate design_optimizer w/ refactored SurrogateModel
+- Make config file location-independent of the pysur code

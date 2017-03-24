@@ -1,0 +1,120 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pysur.sm_pipe</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="pysur.html"><font color="#ffffff">pysur</font></a>.sm_pipe</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/jack/develop/MSS/trunk/PySur/pysur/sm_pipe.py">/home/jack/develop/MSS/trunk/PySur/pysur/sm_pipe.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="pickle.html">pickle</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pysur.sm_pipe.html#Filter">Filter</a>
+</font></dt><dt><font face="helvetica, arial"><a href="pysur.sm_pipe.html#Pipeline">Pipeline</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Filter">class <strong>Filter</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Abstract&nbsp;class&nbsp;for&nbsp;data&nbsp;filters&nbsp;in&nbsp;a&nbsp;pipeline.&nbsp;Should&nbsp;be&nbsp;subclassed&nbsp;elsewhere&nbsp;by&nbsp;classes<br>
+which&nbsp;implement&nbsp;<a href="#Filter-run_filter">run_filter</a>().&nbsp;Filters&nbsp;work&nbsp;on&nbsp;data&nbsp;that&nbsp;is&nbsp;passed&nbsp;to&nbsp;them&nbsp;in&nbsp;a&nbsp;pipeline<br>
+and&nbsp;can&nbsp;be&nbsp;linked&nbsp;in&nbsp;sequence&nbsp;or&nbsp;in&nbsp;parallel,&nbsp;i.e.&nbsp;a&nbsp;filter&nbsp;can&nbsp;receive&nbsp;input&nbsp;from<br>
+multiple&nbsp;other&nbsp;sources,&nbsp;and&nbsp;can&nbsp;send&nbsp;output&nbsp;to&nbsp;multiple&nbsp;other&nbsp;sinks.<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;is&nbsp;used&nbsp;to&nbsp;abstractly&nbsp;define&nbsp;the&nbsp;interface&nbsp;between&nbsp;multiple&nbsp;elements&nbsp;of&nbsp;a&nbsp;<br>
+pipeline.&nbsp;When&nbsp;creating&nbsp;a&nbsp;pipeline,&nbsp;each&nbsp;filter&nbsp;is&nbsp;separately&nbsp;instantiated,&nbsp;and&nbsp;then<br>
+linked&nbsp;together&nbsp;using&nbsp;the&nbsp;<a href="#Filter-upconnect">upconnect</a>()&nbsp;method&nbsp;for&nbsp;setting&nbsp;upstream&nbsp;connections&nbsp;(data<br>
+sources),&nbsp;and&nbsp;using&nbsp;the&nbsp;<a href="#Filter-downconnect">downconnect</a>()&nbsp;method&nbsp;for&nbsp;setting&nbsp;downstream&nbsp;connections&nbsp;(data<br>
+sinks).<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Filter-__init__"><strong>__init__</strong></a>(self, tag, upstream<font color="#909090">=[]</font>, downstream<font color="#909090">=[]</font>)</dt><dd><tt>Basic&nbsp;initialization&nbsp;of&nbsp;a&nbsp;filter&nbsp;instance.&nbsp;Must&nbsp;give&nbsp;each&nbsp;filter&nbsp;a&nbsp;unique&nbsp;tag.<br>
+&nbsp;<br>
+Initialize&nbsp;an&nbsp;upstream&nbsp;and&nbsp;downstream&nbsp;filter&nbsp;if&nbsp;provided.&nbsp;upstream&nbsp;and&nbsp;downstream<br>
+are&nbsp;iterables&nbsp;of&nbsp;instances&nbsp;of&nbsp;other&nbsp;filters.</tt></dd></dl>
+
+<dl><dt><a name="Filter-downconnect"><strong>downconnect</strong></a>(self, downstream)</dt><dd><tt>Connect&nbsp;a&nbsp;filter&nbsp;downstream&nbsp;of&nbsp;this&nbsp;filter.</tt></dd></dl>
+
+<dl><dt><a name="Filter-run_filter"><strong>run_filter</strong></a>(self, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Filter-upconnect"><strong>upconnect</strong></a>(self, upstream)</dt><dd><tt>Connect&nbsp;a&nbsp;filter&nbsp;upstream&nbsp;of&nbsp;this&nbsp;filter.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Pipeline">class <strong>Pipeline</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;representing&nbsp;a&nbsp;surrogate&nbsp;modeling&nbsp;and&nbsp;design&nbsp;optimization&nbsp;pipeline.&nbsp;An&nbsp;instance&nbsp;of&nbsp;sm_pipe&nbsp;will&nbsp;<br>
+handle&nbsp;the&nbsp;discrete&nbsp;stages&nbsp;of&nbsp;the&nbsp;pipeline,&nbsp;known&nbsp;as&nbsp;filters,&nbsp;as&nbsp;well&nbsp;as&nbsp;the&nbsp;interfaces&nbsp;between<br>
+the&nbsp;filters,&nbsp;known&nbsp;as&nbsp;pipes.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Pipeline-__init__"><strong>__init__</strong></a>(self, name, rootdir, filters<font color="#909090">=[]</font>, data_sources<font color="#909090">=[]</font>)</dt><dd><tt>Initialize&nbsp;a&nbsp;pipeline&nbsp;instance.&nbsp;Choose&nbsp;a&nbsp;root&nbsp;data&nbsp;directory,&nbsp;and&nbsp;add&nbsp;filter&nbsp;and&nbsp;pipe&nbsp;instances.</tt></dd></dl>
+
+<dl><dt><a name="Pipeline-add_filter"><strong>add_filter</strong></a>(self, filter_, upstream, downstream)</dt><dd><tt>Add&nbsp;a&nbsp;filter&nbsp;to&nbsp;the&nbsp;pipeline&nbsp;and&nbsp;specify&nbsp;the&nbsp;upstream&nbsp;and&nbsp;downstream&nbsp;filters.</tt></dd></dl>
+
+<dl><dt><a name="Pipeline-connect"><strong>connect</strong></a>(self, upstream, downstream)</dt><dd><tt>Connect&nbsp;two&nbsp;filters&nbsp;to&nbsp;each&nbsp;other&nbsp;logically.</tt></dd></dl>
+
+<dl><dt><a name="Pipeline-get_connections"><strong>get_connections</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pipeline-get_filter_tags"><strong>get_filter_tags</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pipeline-get_pipeline_overview"><strong>get_pipeline_overview</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Pipeline-remove_filter"><strong>remove_filter</strong></a>(self, filter_)</dt><dd><tt>Remove&nbsp;a&nbsp;filter&nbsp;from&nbsp;the&nbsp;pipeline.</tt></dd></dl>
+
+<dl><dt><a name="Pipeline-run_pipeline"><strong>run_pipeline</strong></a>(self, filter_list<font color="#909090">=None</font>)</dt><dd><tt>Run&nbsp;the&nbsp;pipeline.&nbsp;If&nbsp;a&nbsp;list&nbsp;of&nbsp;filters&nbsp;is&nbsp;passed,&nbsp;only&nbsp;the&nbsp;filters&nbsp;in&nbsp;that&nbsp;list&nbsp;will&nbsp;be&nbsp;run.&nbsp;If<br>
+no&nbsp;filter&nbsp;list&nbsp;is&nbsp;passed,&nbsp;all&nbsp;the&nbsp;filters&nbsp;in&nbsp;the&nbsp;pipeline&nbsp;will&nbsp;be&nbsp;run.<br>
+&nbsp;<br>
+Filters&nbsp;in&nbsp;the&nbsp;filter_list&nbsp;should&nbsp;be&nbsp;sequential,&nbsp;but&nbsp;they&nbsp;don't&nbsp;necessarily&nbsp;have&nbsp;to&nbsp;be,&nbsp;so&nbsp;long<br>
+as&nbsp;the&nbsp;proper&nbsp;input&nbsp;files&nbsp;exist&nbsp;for&nbsp;each&nbsp;filter.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

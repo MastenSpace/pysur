@@ -1,0 +1,2 @@
+# Set the default eol character for all text to be a line feed.
+* text eol=lf

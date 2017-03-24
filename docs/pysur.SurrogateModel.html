@@ -1,0 +1,233 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pysur.SurrogateModel</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="pysur.html"><font color="#ffffff">pysur</font></a>.SurrogateModel</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/jack/develop/MSS/trunk/PySur/pysur/SurrogateModel.py">/home/jack/develop/MSS/trunk/PySur/pysur/SurrogateModel.py</a></font></td></tr></table>
+    <p><tt>Surrogate&nbsp;Model&nbsp;Class.<br>
+&nbsp;<br>
+Author:&nbsp;Jack&nbsp;Nelson&nbsp;&lt;jnelson@masten.aero&gt;<br>
+Date&nbsp;:&nbsp;June&nbsp;2016<br>
+&nbsp;<br>
+Copyright&nbsp;2016&nbsp;Masten&nbsp;Space&nbsp;Systems<br>
+&nbsp;<br>
+A&nbsp;class&nbsp;for&nbsp;training&nbsp;and&nbsp;using&nbsp;surrogate&nbsp;models.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pysur.sm_pipe.html">pysur.sm_pipe</a><br>
+<a href="sklearn.cross_validation.html">sklearn.cross_validation</a><br>
+<a href="sklearn.grid_search.html">sklearn.grid_search</a><br>
+<a href="itertools.html">itertools</a><br>
+</td><td width="25%" valign=top><a href="logging.html">logging</a><br>
+<a href="sklearn.metrics.html">sklearn.metrics</a><br>
+<a href="multiprocessing.html">multiprocessing</a><br>
+<a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="pandas.html">pandas</a><br>
+<a href="pdb.html">pdb</a><br>
+<a href="sklearn.preprocessing.html">sklearn.preprocessing</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="warnings.html">warnings</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="pysur.SurrogateModel.html#SingleModel">SingleModel</a>
+</font></dt><dt><font face="helvetica, arial"><a href="pysur.sm_pipe.html#Filter">pysur.sm_pipe.Filter</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pysur.SurrogateModel.html#SurrogateModel">SurrogateModel</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SingleModel">class <strong>SingleModel</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;single-objective&nbsp;surrogate&nbsp;model&nbsp;class.&nbsp;Acts&nbsp;as&nbsp;a&nbsp;container&nbsp;object&nbsp;for&nbsp;attributes&nbsp;and&nbsp;data<br>
+associated&nbsp;with&nbsp;a&nbsp;single&nbsp;surrogate&nbsp;model&nbsp;object.<br>
+&nbsp;<br>
+Class&nbsp;Attributes:<br>
+&nbsp;<br>
+X&nbsp;-&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Y<br>
+&nbsp;&nbsp;&nbsp;&nbsp;label<br>
+&nbsp;&nbsp;&nbsp;&nbsp;svr_obj<br>
+&nbsp;&nbsp;&nbsp;&nbsp;X_scaler<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Y_scaler<br>
+&nbsp;&nbsp;&nbsp;&nbsp;X_scaled<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Y_scaled<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fitness_score<br>
+&nbsp;&nbsp;&nbsp;&nbsp;hyperparameters<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SingleModel-__init__"><strong>__init__</strong></a>(self, X, Y, label)</dt><dd><tt>Initialize&nbsp;the&nbsp;<a href="#SingleModel">SingleModel</a>&nbsp;class.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SurrogateModel">class <strong>SurrogateModel</strong></a>(<a href="pysur.sm_pipe.html#Filter">pysur.sm_pipe.Filter</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SurrogateModel">SurrogateModel</a>(configfile,&nbsp;datafile,&nbsp;feature_labels,&nbsp;target_labels,&nbsp;gridsearch&nbsp;=&nbsp;False,&nbsp;C_range&nbsp;=&nbsp;(1,30),&nbsp;epsilon_scale&nbsp;=&nbsp;0.15,&nbsp;scoring_metric&nbsp;=&nbsp;'mean_squared_error',&nbsp;parallel&nbsp;=&nbsp;1,&nbsp;1cross_validate&nbsp;=&nbsp;True,&nbsp;scoring_metric&nbsp;=&nbsp;'mean_squared_error')<br>
+&nbsp;<br>
+Class&nbsp;that&nbsp;represents&nbsp;a&nbsp;surrogate&nbsp;model&nbsp;based&nbsp;on&nbsp;Radial&nbsp;Basis&nbsp;Function&nbsp;(RBF)&nbsp;Support&nbsp;Vector&nbsp;Regression&nbsp;(SVR).<br>
+&nbsp;<br>
+<a href="#SurrogateModel">SurrogateModel</a>&nbsp;acts&nbsp;as&nbsp;a&nbsp;wrapper&nbsp;for&nbsp;individual&nbsp;surrogate&nbsp;models,&nbsp;holding&nbsp;several&nbsp;scikit-learn&nbsp;SVR&nbsp;objects&nbsp;for&nbsp;a&nbsp;single&nbsp;dataset&nbsp;that<br>
+correspond&nbsp;to&nbsp;the&nbsp;outputs&nbsp;of&nbsp;the&nbsp;overall&nbsp;model.&nbsp;For&nbsp;example,&nbsp;if&nbsp;a&nbsp;dataset&nbsp;has&nbsp;a&nbsp;multivariate&nbsp;input&nbsp;X&nbsp;but&nbsp;only&nbsp;a&nbsp;single<br>
+output&nbsp;parameter&nbsp;Y,&nbsp;<a href="#SurrogateModel">SurrogateModel</a>.models&nbsp;will&nbsp;contain&nbsp;a&nbsp;single&nbsp;scitik-learn&nbsp;regression&nbsp;object&nbsp;used&nbsp;to&nbsp;predict&nbsp;the&nbsp;single&nbsp;output&nbsp;Y.<br>
+If&nbsp;a&nbsp;dataset&nbsp;with&nbsp;inputs&nbsp;X&nbsp;has&nbsp;a&nbsp;multivariate&nbsp;output&nbsp;Y,&nbsp;then&nbsp;<a href="#SurrogateModel">SurrogateModel</a>.models&nbsp;will&nbsp;contain&nbsp;several&nbsp;regression&nbsp;objects<br>
+that&nbsp;will&nbsp;each&nbsp;predict&nbsp;one&nbsp;of&nbsp;the&nbsp;outputs&nbsp;in&nbsp;Y.&nbsp;In&nbsp;this&nbsp;way,&nbsp;<a href="#SurrogateModel">SurrogateModel</a>&nbsp;can&nbsp;handle&nbsp;both&nbsp;single&nbsp;and&nbsp;multivariate&nbsp;outputs<br>
+without&nbsp;changing&nbsp;the&nbsp;interface&nbsp;very&nbsp;much.<br>
+&nbsp;<br>
+Parameters:<br>
+-----------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;configfile:&nbsp;The&nbsp;(absolute)&nbsp;path&nbsp;to&nbsp;a&nbsp;config&nbsp;file&nbsp;to&nbsp;use&nbsp;to&nbsp;create&nbsp;the&nbsp;<a href="#SurrogateModel">SurrogateModel</a>&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;a&nbsp;configfile&nbsp;is&nbsp;passed&nbsp;as&nbsp;an&nbsp;argument,&nbsp;all&nbsp;subsequent&nbsp;arguments&nbsp;will&nbsp;be&nbsp;ignored.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;datafile:&nbsp;The&nbsp;(absolute)&nbsp;path&nbsp;to&nbsp;and&nbsp;filename&nbsp;of&nbsp;the&nbsp;datafile&nbsp;to.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;label&nbsp;(String):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;label&nbsp;for&nbsp;the&nbsp;surrogate&nbsp;model.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;feature_labels&nbsp;(List&nbsp;of&nbsp;Strings):&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;names&nbsp;of&nbsp;the&nbsp;input&nbsp;features&nbsp;the&nbsp;model&nbsp;is&nbsp;trained&nbsp;on.&nbsp;In&nbsp;other&nbsp;words,&nbsp;the&nbsp;columns&nbsp;of&nbsp;X.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;target_labels&nbsp;(List&nbsp;of&nbsp;Strings):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;names&nbsp;of&nbsp;the&nbsp;outputs&nbsp;the&nbsp;model&nbsp;predicts.&nbsp;That&nbsp;is,&nbsp;the&nbsp;columns&nbsp;of&nbsp;Y.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;gridsearch&nbsp;(Boolean):&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;scikit-learn's&nbsp;gridsearch&nbsp;tool&nbsp;to&nbsp;search&nbsp;for&nbsp;optimized&nbsp;hyperparameters&nbsp;to&nbsp;train&nbsp;the&nbsp;model&nbsp;with.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;optimize_iter&nbsp;(Integer):&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;iterations&nbsp;for&nbsp;gridsearch&nbsp;to&nbsp;perform.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_range&nbsp;(Tuple&nbsp;of&nbsp;floats):&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;start&nbsp;and&nbsp;end&nbsp;values&nbsp;of&nbsp;the&nbsp;range&nbsp;to&nbsp;run&nbsp;gridsearch&nbsp;over&nbsp;for&nbsp;C.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;epsilon_scale&nbsp;(Float):&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;scaling&nbsp;factor&nbsp;of&nbsp;the&nbsp;range&nbsp;around&nbsp;the&nbsp;standard&nbsp;deviation&nbsp;of&nbsp;the&nbsp;standard&nbsp;deviation&nbsp;of&nbsp;the&nbsp;target&nbsp;data<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;scoring_metric&nbsp;(String):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;scikit-learn&nbsp;regression&nbsp;scoring&nbsp;parameter.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choices&nbsp;are:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mean_absolute_error'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'mean_Squared_error'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'median_absolute_error'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'r2'<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See&nbsp;scikit-learn&nbsp;documentation&nbsp;for&nbsp;more&nbsp;information&nbsp;on&nbsp;scoring&nbsp;parameters.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://scikit-learn.org/stable/modules/model_evaluation.html">http://scikit-learn.org/stable/modules/model_evaluation.html</a><br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;parallel&nbsp;(Integer):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;processes&nbsp;to&nbsp;run&nbsp;in&nbsp;parallel.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Setting&nbsp;this&nbsp;to&nbsp;1&nbsp;(the&nbsp;default)&nbsp;runs&nbsp;a&nbsp;single&nbsp;process.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;verbosity&nbsp;(Integer):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set&nbsp;the&nbsp;verbosity&nbsp;of&nbsp;debugging&nbsp;outputs.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;lower&nbsp;the&nbsp;number,&nbsp;the&nbsp;more&nbsp;verbose.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Debug&nbsp;=&nbsp;1,&nbsp;Info&nbsp;=&nbsp;2,&nbsp;Warning&nbsp;=&nbsp;3,&nbsp;Error&nbsp;=&nbsp;4,&nbsp;Critical&nbsp;=&nbsp;5<br>
+&nbsp;<br>
+Methods:<br>
+--------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#SurrogateModel-train">train</a>(datafile&nbsp;=&nbsp;None):&nbsp;Trains&nbsp;a&nbsp;surrogate&nbsp;model&nbsp;on&nbsp;data&nbsp;loaded&nbsp;in&nbsp;from&nbsp;datafile.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#SurrogateModel-cross_validate">cross_validate</a>():&nbsp;Cross-validates&nbsp;the&nbsp;trained&nbsp;models&nbsp;with&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#SurrogateModel-predict">predict</a>(X)&nbsp;:&nbsp;Make&nbsp;prediction&nbsp;outputs&nbsp;from&nbsp;the&nbsp;sample&nbsp;inputs&nbsp;X.&nbsp;X&nbsp;is&nbsp;an&nbsp;indexible&nbsp;array.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;<br>
+Attributes:<br>
+-----------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;performance&nbsp;metric&nbsp;being&nbsp;modeled.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;models:&nbsp;A&nbsp;dictionary&nbsp;of&nbsp;<a href="#SingleModel">SingleModel</a>&nbsp;objects&nbsp;indexed&nbsp;on&nbsp;target_labels<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fitness&nbsp;:&nbsp;The&nbsp;fitness&nbsp;score&nbsp;evaluated&nbsp;during&nbsp;model&nbsp;validation/cross-validation.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;scoring_metric&nbsp;:&nbsp;The&nbsp;scoring&nbsp;metric&nbsp;used&nbsp;to&nbsp;evaluate&nbsp;the&nbsp;fitness&nbsp;of&nbsp;the&nbsp;model.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;feature_labels&nbsp;:&nbsp;A&nbsp;list&nbsp;of&nbsp;the&nbsp;parameter&nbsp;names&nbsp;this&nbsp;model&nbsp;takes&nbsp;as&nbsp;input&nbsp;for&nbsp;predictions.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;target_labels&nbsp;:&nbsp;A&nbsp;list&nbsp;of&nbsp;the&nbsp;target&nbsp;(output)&nbsp;parameter&nbsp;names.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;hyperparameters&nbsp;(dict):&nbsp;The&nbsp;hyperparameters&nbsp;with&nbsp;which&nbsp;the&nbsp;model&nbsp;was&nbsp;trained.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="pysur.SurrogateModel.html#SurrogateModel">SurrogateModel</a></dd>
+<dd><a href="pysur.sm_pipe.html#Filter">pysur.sm_pipe.Filter</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SurrogateModel-__init__"><strong>__init__</strong></a>(self, configfile<font color="#909090">=None</font>, datafile<font color="#909090">=None</font>, label<font color="#909090">=None</font>, feature_labels<font color="#909090">=None</font>, target_labels<font color="#909090">=None</font>, optimize_iter<font color="#909090">=20</font>, C_range<font color="#909090">=(1, 30)</font>, epsilon_scale<font color="#909090">=0.15</font>, scoring_metric<font color="#909090">='mean_squared_error'</font>, parallel<font color="#909090">=1</font>, verbosity<font color="#909090">=0</font>)</dt></dl>
+
+<dl><dt><a name="SurrogateModel-cross_validate"><strong>cross_validate</strong></a>(self, plot<font color="#909090">=True</font>)</dt><dd><tt>Cross-validate&nbsp;the&nbsp;(trained)&nbsp;<a href="#SurrogateModel">SurrogateModel</a>&nbsp;with&nbsp;the&nbsp;training&nbsp;data&nbsp;using&nbsp;Leave-One-Out&nbsp;(LOO)<br>
+cross-validation.&nbsp;Returns&nbsp;a&nbsp;plot&nbsp;of&nbsp;the&nbsp;predicted&nbsp;outputs&nbsp;from&nbsp;the&nbsp;<a href="#SurrogateModel">SurrogateModel</a>&nbsp;vs&nbsp;the<br>
+actual&nbsp;outputs&nbsp;from&nbsp;the&nbsp;real&nbsp;database.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Matplotlib&nbsp;figure&nbsp;object</tt></dd></dl>
+
+<dl><dt><a name="SurrogateModel-predict"><strong>predict</strong></a>(self, X, predict_list<font color="#909090">=None</font>, norm<font color="#909090">=True</font>)</dt><dd><tt>Predict&nbsp;a&nbsp;model&nbsp;output&nbsp;based&nbsp;on&nbsp;the&nbsp;inputs&nbsp;in&nbsp;X.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;(list&nbsp;of&nbsp;floats):&nbsp;The&nbsp;input&nbsp;variables&nbsp;to&nbsp;the&nbsp;model.&nbsp;X&nbsp;must&nbsp;have&nbsp;length&nbsp;==&nbsp;len(feature_labels)&nbsp;and&nbsp;will&nbsp;be&nbsp;interpreted&nbsp;according&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;order&nbsp;of&nbsp;the&nbsp;features&nbsp;in&nbsp;feature_labels.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;predict_list:&nbsp;List&nbsp;of&nbsp;output&nbsp;variable&nbsp;(target)&nbsp;labels.&nbsp;Optional.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select&nbsp;which&nbsp;target&nbsp;variables&nbsp;to&nbsp;predict.&nbsp;If&nbsp;None,&nbsp;<a href="#SurrogateModel-predict">predict</a>()&nbsp;will&nbsp;return<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;predictions&nbsp;for&nbsp;all&nbsp;the&nbsp;targets&nbsp;in&nbsp;a&nbsp;list.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;norm&nbsp;(Boolean):&nbsp;Turn&nbsp;normalization&nbsp;on&nbsp;or&nbsp;off.&nbsp;norm&nbsp;=&nbsp;False&nbsp;will&nbsp;assumes&nbsp;that&nbsp;the&nbsp;sample<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;passed&nbsp;in&nbsp;is&nbsp;scaled&nbsp;between&nbsp;0&nbsp;and&nbsp;1.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prediction&nbsp;(list&nbsp;of&nbsp;floats):&nbsp;The&nbsp;predicted&nbsp;output(s).</tt></dd></dl>
+
+<dl><dt><a name="SurrogateModel-run_filter"><strong>run_filter</strong></a>(self, *args, **kwargs)</dt><dd><tt>The&nbsp;"main"&nbsp;function&nbsp;of&nbsp;this&nbsp;filter&nbsp;class.&nbsp;This&nbsp;is&nbsp;called&nbsp;by&nbsp;a&nbsp;Pipeline&nbsp;instance&nbsp;to&nbsp;run&nbsp;the&nbsp;filtering<br>
+sequence&nbsp;in&nbsp;this&nbsp;instance&nbsp;as&nbsp;part&nbsp;of&nbsp;the&nbsp;larger&nbsp;pipeline.</tt></dd></dl>
+
+<dl><dt><a name="SurrogateModel-train"><strong>train</strong></a>(self, datafile<font color="#909090">=None</font>)</dt><dd><tt>Train&nbsp;the&nbsp;SVR&nbsp;object(s)&nbsp;on&nbsp;a&nbsp;dataset.&nbsp;If&nbsp;a&nbsp;datafile&nbsp;is&nbsp;not&nbsp;passed&nbsp;to&nbsp;the&nbsp;constructor,<br>
+it&nbsp;must&nbsp;be&nbsp;passed&nbsp;to&nbsp;<a href="#SurrogateModel-train">train</a>()&nbsp;as&nbsp;an&nbsp;argument.<br>
+&nbsp;<br>
+Passing&nbsp;a&nbsp;datafile&nbsp;to&nbsp;this&nbsp;function&nbsp;will&nbsp;overwrite&nbsp;any&nbsp;datafile&nbsp;set&nbsp;in&nbsp;the&nbsp;constructor.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="pysur.sm_pipe.html#Filter">pysur.sm_pipe.Filter</a>:<br>
+<dl><dt><a name="SurrogateModel-downconnect"><strong>downconnect</strong></a>(self, downstream)</dt><dd><tt>Connect&nbsp;a&nbsp;filter&nbsp;downstream&nbsp;of&nbsp;this&nbsp;filter.</tt></dd></dl>
+
+<dl><dt><a name="SurrogateModel-upconnect"><strong>upconnect</strong></a>(self, upstream)</dt><dd><tt>Connect&nbsp;a&nbsp;filter&nbsp;upstream&nbsp;of&nbsp;this&nbsp;filter.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="pysur.sm_pipe.html#Filter">pysur.sm_pipe.Filter</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-self_test"><strong>self_test</strong></a>()</dt></dl>
+</td></tr></table>
+</body></html>

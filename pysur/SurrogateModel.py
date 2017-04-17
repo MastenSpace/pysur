@@ -23,6 +23,7 @@ import pdb
 import logging
 import multiprocessing
 import itertools
+import json
 
 import pandas as pd
 from sklearn.svm import SVR
@@ -202,23 +203,7 @@ class SurrogateModel(Pipe.Filter):
         
         # If a config file is passed, parse the file for the parameters
         else:
-            sys.path.append(os.path.dirname(configfile))
-            import config
-
-            self.datafile = config.input_data_file
-            self.C_range = config.C_range
-            self.epsilon_scale = config.epsilon_scale
-            self.optimize_iter = config.optimize_iter
-            self.parallel = config.parallel_jobs
-            if config.DEBUG is True:
-                self.verbosity = 10
-            else:
-                self.verbosity = 20
-
-            self.label = config.modeling_description
-            self.scoring_metric = config.model_scoring
-            self.feature_labels = config.features
-            self.target_labels = config.targets
+            self._parse_config(configfile)
 
         # Since an SVR object is trained for each output variable, we store these individual
         # model objects in a dictionary keyed by their variable name.
@@ -246,6 +231,59 @@ class SurrogateModel(Pipe.Filter):
         # if a datafile is provided in the init, load the dataset
         if self.datafile is not None:
             self._load_dataset(self.datafile)
+
+    def _parse_config(self, config_filepath):
+        """
+            Parses a json config file
+        """
+        with open(config_filepath) as cfgson:
+            cfgdat = json.load(cfgson)
+
+        # get a list of the sections
+        sections = [section for section in cfgdat]
+
+        # Parse the section objects for specific parameter fields
+        if "Pipeline" in sections:
+            pipesec = cfgdat["Pipeline"]
+            fields = [field for field in pipesec]
+
+            if "debug" in fields:
+                debug = pipesec["debug"]
+                if debug is True:
+                    self.verbosity = logging.DEBUG
+                else:
+                    self.verbosity = logging.INFO
+            if "modeling_description" in fields:
+                self.label = pipesec["modeling_description"]
+        else raise
+        if "Data" in sections:
+            datasec = cfgdat["Data"]
+            fields = [field for field in datasec]
+
+            if "input_data_file" in fields:
+                self.datafile = datasec["input_data_file"]
+            if "features" in fields:
+                self.feature_labels = datasec["features"]
+            if "targets" in fields:
+                self.target_labels = datasec["targets"]
+        
+        if "HyperparameterOpt" in sections:
+            hypoptsec = cfgdat["HyperparameterOpt"]
+            fields = [field for field in hypoptsec]
+
+            if "optimize_iter" in fields:
+                self.optimize_iter = hypoptsec["optimize_iter"]
+            if "parallel_jobs" in fields:
+                self.parallel = hypoptsec["parallel_jobs"]
+            if "C_range" in fields:
+                self.C_range = hypoptsec["C_range"]
+            if "epsilon_scale" in fields:
+                self.epsilon_scale = hypoptsec["epsilon_scale"]
+            if "model_scoring" in fields:
+                self.scoring_metric = hypoptsec["model_scoring"]
+
+        return
+
 
     def _load_dataset(self, input_file):
         """

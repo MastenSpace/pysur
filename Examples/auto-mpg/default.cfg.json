@@ -1,0 +1,65 @@
+{
+	"Pipeline":{
+		"make_models": true,
+		"run_SA": true,
+		"debug": true,
+		"output_directory": "../Test_Outputs",
+		"modeling_description": "Car fuel-efficiency modeling"
+		},
+
+	"Data":{
+		"data_title": "auto-mpg",
+		"input_data_file": "auto-mpg.dat",
+		"features":[
+			"displacement",
+			"cylinders",
+			"model_year"
+		],
+
+		"targets":[
+			"mpg",
+			"horsepower",
+			"acceleration"
+		]
+	},
+
+	"SurrogateModels":{
+		"test_split": 0.0,
+		"gridsearch": true,
+		"save_models": true,
+		"C_tuple": [5.0749, 5.0749],
+		"epsilon_tuple": [0.09177, 0.09018]
+	},
+
+	"HyperparameterOpt":{
+		"optimize_iter": 10,
+		"parallel_jobs": 1,
+		"C_range": [1,30],
+		"epsilon_scale": 0.15,
+		"model_scoring": "mean_squared_error"
+	},
+
+	"SensitivityAnalysis":{
+		"param_file": "mpgParamRanges.txt",
+		"Nsamples": 1000000,
+		"compute_second_order": false,
+		"n_cores": 4
+	},
+
+	"DesignOptimization":{
+		"optimize_title": "autoMPG",
+		"model_files": [],
+		"target_names":[
+			"mpg",
+			"horsepower",
+			"acceleration"
+		],
+		"cost_function": [],
+		"som_iter": 200,
+		"N_sample_skip": 1,
+		"som_dimensions": null,
+		"som_learning_rate": 0.05
+	}
+
+	
+}

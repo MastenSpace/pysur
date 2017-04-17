@@ -2,14 +2,14 @@
 	"Pipeline":{
 		"make_models": true,
 		"run_SA": true,
-		"debug": true,
+		"debug": false,
 		"output_directory": "../Test_Outputs",
 		"modeling_description": "Car fuel-efficiency modeling"
 		},
 
 	"Data":{
 		"data_title": "auto-mpg",
-		"input_data_file": "auto-mpg.dat",
+		"input_data_file": "auto-mpg.data",
 		"features":[
 			"displacement",
 			"cylinders",

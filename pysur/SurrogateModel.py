@@ -255,7 +255,7 @@ class SurrogateModel(Pipe.Filter):
                     self.verbosity = logging.INFO
             if "modeling_description" in fields:
                 self.label = pipesec["modeling_description"]
-        else raise
+
         if "Data" in sections:
             datasec = cfgdat["Data"]
             fields = [field for field in datasec]
@@ -297,20 +297,16 @@ class SurrogateModel(Pipe.Filter):
         logging.info("Loading dataset from %s" %self.datafile)
         try:
             # load csv data from file into a Pandas dataframe
-            dataframe = pd.read_csv(input_file)
+            dataframe = pd.read_csv(input_file, delim_whitespace = True)
         except IOError as e:
             logging.error("IOError: File %s not found." %input_file)
             raise
         # drop rows (samples) with NaNs in them
         dataframe = dataframe[dataframe.isnull() == False]
-        logging.debug(dataframe)
         # split the dataframe into X and Y data based on the feature and target labels
         self.X = dataframe.filter(self.feature_labels)
         self.Y = dataframe.filter(self.target_labels)
 
-        logging.debug(dataframe.values)
-        logging.debug(self.X)
-        logging.debug(self.Y)
         # initialize SingleModel objects stored in self.models
         for label, y_series in self.Y.iteritems():
             self.models[label] = SingleModel(X = self.X.values, Y = y_series.values, label = label)

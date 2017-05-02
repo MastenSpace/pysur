@@ -12,6 +12,12 @@ data = 'auto-mpg.data'
 modeler = SurrogateModel.SurrogateModel()
 
 # Create a surrogate model object
-configfile = "config.py"
+configfile = "autompg.cfg.json"
 model = SurrogateModel.SurrogateModel(configfile = configfile)
 model.train()
+
+predict_data = [150.0, 6, 71]
+targets = ["mpg", "horsepower"]
+predictions = model.predict(predict_data, targets)
+
+print predictions

@@ -88,6 +88,14 @@ class SingleModel():
         self.fitness_score = None
         self.hyperparameters = {'C': None, 'epsilon': None}
 
+    def predict(self, X):
+        """
+            Predict the output of the model based on data in X
+        """
+        X = self.X_scaler.transform(X)
+
+        return self.Y_scaler.transform(self.svr_obj.predict(X))
+
 class SurrogateModel(Pipe.Filter):
     """
         SurrogateModel(configfile, datafile, feature_labels, target_labels, gridsearch = False, C_range = (1,30), epsilon_scale = 0.15, scoring_metric = 'mean_squared_error', parallel = 1, 1cross_validate = True, scoring_metric = 'mean_squared_error')
@@ -478,7 +486,7 @@ class SurrogateModel(Pipe.Filter):
                 predict_models = self.models
             
             # Build a dict of the (properly scaled) outputs from each model
-            predictions = {model.label: model.Y_scaler.inverse_transform(model.predict(X)) for model in predict_models}
+            predictions = {model_name: predict_models[model_name].Y_scaler.inverse_transform(predict_models[model_name].predict(X)) for model_name in predict_models}
 
         return predictions
 

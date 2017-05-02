@@ -435,10 +435,18 @@ class SurrogateModel(Pipe.Filter):
             if norm is True:
                 # scale the inputs
                 X = self.X_scaler.transform(X)
-                
-            prediction = self.model.predict(X)
 
-        return self.Y_scaler.inverse_transform(prediction)
+            if predict_list is not None:
+                # Construct a new dict that's a subset of self.models with only the models selected in predict_list
+                predict_models = {model_name: self.models[model_name] for model_name in predict_list}
+            else:
+                # Otherwise, we just use all the models
+                predict_models = self.models
+            
+            # Build a dict of the (properly scaled) outputs from each model
+            predictions = {model.label: model.Y_scaler.inverse_transform(model.predict(X)) for model in predict_models}
+
+        return predictions
 
     def run_filter(self, *args, **kwargs):
         """

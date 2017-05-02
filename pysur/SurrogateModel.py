@@ -486,7 +486,7 @@ class SurrogateModel(Pipe.Filter):
                 predict_models = self.models
             
             # Build a dict of the (properly scaled) outputs from each model
-            predictions = {model_name: predict_models[model_name].Y_scaler.inverse_transform(predict_models[model_name].predict(X)) for model_name in predict_models}
+            predictions = {model_name: predict_models[model_name].predict(X) for model_name in predict_models}
 
         return predictions
 
